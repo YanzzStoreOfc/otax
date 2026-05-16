@@ -44,17 +44,90 @@
         .owner-card:active { transform: scale(0.97); box-shadow: 3px 3px 0 #000; }
         .owner-card h3 { font-size: 1.2rem; font-weight: 700; margin: 10px 0 5px; color: #FFFFFF; text-shadow: 1px 1px 0 #000; }
         .owner-card .price { background: #000; color: #FFFFFF; }
-        .menu-btn { position: fixed; top: 20px; right: 20px; width: 40px; height: 40px; background: #FFFFFF; border: 2px solid #000; box-shadow: 3px 3px 0 #000; border-radius: 10px; cursor: pointer; z-index: 1002; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
-        .menu-btn span { width: 20px; height: 2px; background: #000000; border-radius: 2px; }
+        
+        /* MENU 3 GARIS - PUTIH */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #FFFFFF;
+            border: 2px solid #000;
+            box-shadow: 3px 3px 0 #000;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 1002;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .menu-btn span {
+            width: 20px;
+            height: 2px;
+            background: #000000;
+            border-radius: 2px;
+        }
         .menu-btn:hover { transform: scale(1.05); }
         .menu-btn:active { transform: scale(0.95); }
-        .dropdown-menu { position: fixed; top: 70px; right: 20px; background: #FFFFFF; border: 2px solid #000; box-shadow: 5px 5px 0 #000; border-radius: 12px; width: 160px; z-index: 1001; display: none; overflow: hidden; }
+        
+        /* DROPDOWN MENU */
+        .dropdown-menu {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: #FFFFFF;
+            border: 2px solid #000;
+            box-shadow: 5px 5px 0 #000;
+            border-radius: 12px;
+            width: 190px;
+            z-index: 1001;
+            display: none;
+            overflow: hidden;
+        }
         .dropdown-menu.show { display: block; animation: menuPop 0.2s ease; }
         @keyframes menuPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .menu-item { padding: 12px 15px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.1s ease; font-size: 0.85rem; font-weight: 500; color: #000; }
-        .menu-item i { width: 20px; font-size: 1.1rem; }
+        .menu-item {
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #000;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-item:last-child { border-bottom: none; }
         .menu-item:hover { background: #F0F0E8; }
-        .music-btn { position: fixed; width: 50px; height: 50px; background: #111111; border: 2px solid #000; box-shadow: 3px 3px 0 #000; border-radius: 50%; cursor: pointer; z-index: 1002; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; user-select: none; touch-action: none; color: white; }
+        .menu-item-left { display: flex; align-items: center; gap: 10px; }
+        .menu-item-left i { width: 20px; }
+        
+        /* TOGGLE ON/OFF (KLIK, BUKAN GESER) */
+        .toggle-btn {
+            background: #FF3366;
+            color: white;
+            border: 1px solid #000;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            min-width: 55px;
+            text-align: center;
+        }
+        .toggle-btn.on {
+            background: #00CC66;
+        }
+        .toggle-btn:active {
+            transform: scale(0.95);
+        }
+        
         .modal, .modal-akun { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: #FFFFFF; border: 3px solid #000; box-shadow: 12px 12px 0 #000; max-width: 380px; width: 100%; padding: 25px; text-align: center; border-radius: 20px; }
         .modal-content h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
@@ -98,13 +171,26 @@
     </div>
 </div>
 
-<div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
-<div id="dropdownMenu" class="dropdown-menu">
-    <div class="menu-item" onclick="window.open('https://t.me/yanzysaja', '_blank')"><i class="fab fa-telegram"></i> Telegram</div>
-    <div class="menu-item" onclick="window.open('https://tiktok.com/@yanzysuper', '_blank')"><i class="fab fa-tiktok"></i> TikTok</div>
+<!-- TOMBOL GARIS 3 -->
+<div class="menu-btn" id="menuBtn">
+    <span></span><span></span><span></span>
 </div>
 
-<div id="musicBtn" class="music-btn"><i class="fas fa-music"></i></div>
+<!-- DROPDOWN MENU (Toggle ON/OFF pake KLIK) -->
+<div id="dropdownMenu" class="dropdown-menu">
+    <div class="menu-item" id="musicMenuItem">
+        <div class="menu-item-left">
+            <i class="fas fa-music"></i> MUSIC
+        </div>
+        <div id="musicToggle" class="toggle-btn off">OFF</div>
+    </div>
+    <div class="menu-item" onclick="window.open('https://t.me/yanzysaja', '_blank')">
+        <div class="menu-item-left"><i class="fab fa-telegram"></i> Telegram</div>
+    </div>
+    <div class="menu-item" onclick="window.open('https://tiktok.com/@yanzysuper', '_blank')">
+        <div class="menu-item-left"><i class="fab fa-tiktok"></i> TikTok</div>
+    </div>
+</div>
 
 <div id="modalAkun" class="modal-akun">
     <div class="modal-content">
@@ -147,133 +233,75 @@
         }
     }, 30);
 
-    // ==================== MUSIK (FIX PAUSE) ====================
-    const musicBtn = document.getElementById('musicBtn');
+    // ==================== MUSIK ON/OFF (KLIK TOGGLE) ====================
     const audio = new Audio('otax.mp3');
     audio.loop = true;
     let isPlaying = false;
+    let musicStarted = false;
+    const musicToggle = document.getElementById('musicToggle');
     
-    // Variabel untuk membedakan drag vs klik
-    let dragStarted = false;
-    let startX = 0, startY = 0;
-    
-    // Posisi awal tombol
-    let savedLeft = localStorage.getItem('musicBtnLeft');
-    let savedTop = localStorage.getItem('musicBtnTop');
-    if (savedLeft && savedTop) {
-        musicBtn.style.left = savedLeft;
-        musicBtn.style.top = savedTop;
-        musicBtn.style.right = 'auto';
-        musicBtn.style.bottom = 'auto';
-    } else {
-        musicBtn.style.bottom = '80px';
-        musicBtn.style.right = '20px';
+    function updateToggleUI(state) {
+        if (state) {
+            musicToggle.innerHTML = 'ON';
+            musicToggle.classList.add('on');
+            musicToggle.classList.remove('off');
+        } else {
+            musicToggle.innerHTML = 'OFF';
+            musicToggle.classList.remove('on');
+            musicToggle.classList.add('off');
+        }
     }
     
-    // MULAI MUSIK SAAT USER INTERAKSI PERTAMA KALI
-    let musicStarted = false;
-    function startMusicOnFirstClick() {
+    function playMusic() {
         if (!musicStarted) {
             audio.play().then(() => {
-                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 isPlaying = true;
                 musicStarted = true;
+                updateToggleUI(true);
+            }).catch(err => console.log('User interaksi dulu'));
+        } else {
+            audio.play();
+            isPlaying = true;
+            updateToggleUI(true);
+        }
+    }
+    
+    function pauseMusic() {
+        audio.pause();
+        isPlaying = false;
+        updateToggleUI(false);
+    }
+    
+    // KLIK toggle untuk ON/OFF
+    musicToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isPlaying) {
+            pauseMusic();
+        } else {
+            playMusic();
+        }
+    });
+    
+    // Mulai musik saat user klik pertama kali
+    function startMusicOnFirstClick() {
+        if (!musicStarted && !isPlaying) {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicStarted = true;
+                updateToggleUI(true);
             }).catch(err => console.log('User harus klik tombol musik manual'));
         }
+        document.body.removeEventListener('click', startMusicOnFirstClick);
     }
-    document.body.addEventListener('click', startMusicOnFirstClick, { once: true });
+    document.body.addEventListener('click', startMusicOnFirstClick);
     
-    // Event untuk drag
-    musicBtn.addEventListener('mousedown', onDragStart);
-    musicBtn.addEventListener('touchstart', onDragStart);
-    
-    function onDragStart(e) {
-        dragStarted = false;
-        const clientX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
-        const clientY = e.clientY || (e.touches ? e.touches[0].clientY : 0);
-        startX = clientX;
-        startY = clientY;
-        
-        const rect = musicBtn.getBoundingClientRect();
-        const startLeftPos = rect.left;
-        const startTopPos = rect.top;
-        
-        function onDragMove(e) {
-            const moveX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
-            const moveY = e.clientY || (e.touches ? e.touches[0].clientY : 0);
-            const deltaX = Math.abs(moveX - startX);
-            const deltaY = Math.abs(moveY - startY);
-            
-            if (deltaX > 5 || deltaY > 5) {
-                dragStarted = true;
-            }
-            
-            let newLeft = startLeftPos + (moveX - startX);
-            let newTop = startTopPos + (moveY - startY);
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
-            const btnWidth = 50;
-            const btnHeight = 50;
-            let finalLeft = Math.min(Math.max(0, newLeft), windowWidth - btnWidth);
-            let finalTop = Math.min(Math.max(0, newTop), windowHeight - btnHeight);
-            
-            musicBtn.style.left = finalLeft + 'px';
-            musicBtn.style.top = finalTop + 'px';
-            musicBtn.style.right = 'auto';
-            musicBtn.style.bottom = 'auto';
-        }
-        
-        function onDragEnd(e) {
-            document.removeEventListener('mousemove', onDragMove);
-            document.removeEventListener('mouseup', onDragEnd);
-            document.removeEventListener('touchmove', onDragMove);
-            document.removeEventListener('touchend', onDragEnd);
-            
-            // Simpan posisi
-            const rectFinal = musicBtn.getBoundingClientRect();
-            localStorage.setItem('musicBtnLeft', rectFinal.left + 'px');
-            localStorage.setItem('musicBtnTop', rectFinal.top + 'px');
-            
-            // Jika tidak digerakkan (hanya klik), maka toggle play/pause
-            if (!dragStarted) {
-                e.stopPropagation();
-                toggleMusic();
-            }
-        }
-        
-        document.addEventListener('mousemove', onDragMove);
-        document.addEventListener('mouseup', onDragEnd);
-        document.addEventListener('touchmove', onDragMove);
-        document.addEventListener('touchend', onDragEnd);
-    }
-    
-    function toggleMusic() {
-        if (!musicStarted) {
-            audio.play().then(() => {
-                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                isPlaying = true;
-                musicStarted = true;
-            }).catch(err => console.log(err));
-        } else {
-            if (isPlaying) {
-                audio.pause();
-                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
-                isPlaying = false;
-            } else {
-                audio.play();
-                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                isPlaying = true;
-            }
-        }
-    }
-    
-    // Menu dropdown
+    // ==================== MENU DROPDOWN ====================
     const menuBtn = document.getElementById('menuBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
     menuBtn.addEventListener('click', (e) => { e.stopPropagation(); dropdownMenu.classList.toggle('show'); });
     document.addEventListener('click', (e) => { if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) dropdownMenu.classList.remove('show'); });
     
-    // Data storage & fungsi website
+    // ==================== DATA STORAGE ====================
     let users = JSON.parse(localStorage.getItem('otax_neousers') || '[]');
     function saveUsers() { localStorage.setItem('otax_neousers', JSON.stringify(users)); }
     let selectedPaket = null, selectedHarga = null, currentUsername = null;
